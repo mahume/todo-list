@@ -59,9 +59,6 @@ const handlers = {
   displayTodos() {
     todoList.displayTodos();
   },
-  toggleAll() {
-    todoList.toggleAll();
-  },
   addTodo() {
     const addTodoTextInput = document.getElementById('add-todo-text-input');
     todoList.addTodo(addTodoTextInput.value);
@@ -78,5 +75,13 @@ const handlers = {
     const deleteTodoIndexInput = document.getElementById('delete-todo-index-input');
     todoList.deleteTodo(deleteTodoIndexInput.valueAsNumber);
     deleteTodoIndexInput.value = '';
+  },
+  toggleCompleted() {
+    const toggleCompletedIndexInput = document.getElementById('toggle-completed-index-input');
+    todoList.toggleCompleted(toggleCompletedIndexInput.valueAsNumber);
+    toggleCompletedIndexInput.value = '';
+  },
+  toggleAll() {
+    todoList.toggleAll();
   },
 };
