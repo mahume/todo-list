@@ -90,8 +90,19 @@ const view = {
   displayTodos() {
     const todosUl = document.querySelector('ul');
     todosUl.innerHTML = '';
+
     for (let i = 0; i < todoList.todos.length; i++) {
       const todoLi = document.createElement('li');
+      const todo = todoList.todos[i];
+      let todoTextWithCompletion = '';
+
+      if (todo.completed === true) {
+        todoTextWithCompletion = `[x] ${todo.todoText}`;
+      } else {
+        todoTextWithCompletion = `[ ] ${todo.todoText}`;
+      }
+
+      todoLi.textContent = todoTextWithCompletion;
       todosUl.appendChild(todoLi);
     }
   },
