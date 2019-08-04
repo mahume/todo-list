@@ -11,8 +11,17 @@
 
 <body>
   <h1>Todos</h1>
-  <button id="display-todos-btn">Display Todos</button>
-  <button id="toggle-all-btn">Toggle All</button>
+
+  <div>
+    <button onclick="handlers.displayTodos()">Display Todos</button>
+    <button onclick="handlers.toggleAll()">Toggle All</button>
+  </div>
+
+  <div>
+    <input type="text" name="add" id="add-todo-text">
+    <button onclick="handlers.addTodo()">Add</button>
+  </div>
+
   <script src="app.js"></script>
 </body>
 

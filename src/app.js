@@ -55,13 +55,16 @@ const todoList = {
   },
 };
 
-const displayTodosBtn = document.querySelector('#display-todos-btn');
-const toggleAllBtn = document.querySelector('#toggle-all-btn');
-
-displayTodosBtn.addEventListener('click', () => {
-  todoList.displayTodos();
-});
-
-toggleAllBtn.addEventListener('click', () => {
-  todoList.toggleAll();
-});
+const handlers = {
+  displayTodos() {
+    todoList.displayTodos();
+  },
+  toggleAll() {
+    todoList.toggleAll();
+  },
+  addTodo() {
+    const addTodoText = document.getElementById('add-todo-text');
+    todoList.addTodo(addTodoText.value);
+    addTodoText.value = '';
+  },
+};
