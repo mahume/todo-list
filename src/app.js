@@ -85,3 +85,14 @@ const handlers = {
     todoList.toggleAll();
   },
 };
+
+const view = {
+  displayTodos() {
+    const todosUl = document.querySelector('ul');
+    todosUl.innerHTML = '';
+    for (let i = 0; i < todoList.todos.length; i++) {
+      const todoLi = document.createElement('li');
+      todosUl.appendChild(todoLi);
+    }
+  },
+};
