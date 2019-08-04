@@ -63,8 +63,15 @@ const handlers = {
     todoList.toggleAll();
   },
   addTodo() {
-    const addTodoText = document.getElementById('add-todo-text');
-    todoList.addTodo(addTodoText.value);
-    addTodoText.value = '';
+    const addTodoTextInput = document.getElementById('add-todo-text-input');
+    todoList.addTodo(addTodoTextInput.value);
+    addTodoTextInput.value = '';
+  },
+  changeTodo() {
+    const changeTodoIndexInput = document.getElementById('change-todo-index-input');
+    const changeTodoTextInput = document.getElementById('change-todo-text-input');
+    todoList.changeTodo(changeTodoIndexInput.valueAsNumber, changeTodoTextInput.value);
+    changeTodoIndexInput.value = '';
+    changeTodoTextInput.value = '';
   },
 };
