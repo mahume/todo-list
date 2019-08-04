@@ -74,4 +74,9 @@ const handlers = {
     changeTodoIndexInput.value = '';
     changeTodoTextInput.value = '';
   },
+  deleteTodo() {
+    const deleteTodoIndexInput = document.getElementById('delete-todo-index-input');
+    todoList.deleteTodo(deleteTodoIndexInput.valueAsNumber);
+    deleteTodoIndexInput.value = '';
+  },
 };
