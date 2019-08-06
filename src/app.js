@@ -50,7 +50,7 @@ const view = {
       } else {
         todoTextWithCompletion = `[ ] ${todo.todoText}`;
       }
-
+      todoLi.id = i;
       todoLi.textContent = todoTextWithCompletion;
       todoLi.appendChild(this.createDeleteBtn());
       todosUl.appendChild(todoLi);
@@ -62,15 +62,26 @@ const view = {
     deleteBtn.className = 'delete-btn';
     return deleteBtn;
   },
+  // Event Delegation
+  setupEventListeners: () => {
+    const todosUl = document.querySelector('ul');
+    todosUl.addEventListener('click', e => {
+      const elementClicked = e.target;
+      if (elementClicked.className === 'delete-btn') {
+        handlers.deleteTodo(parseInt(elementClicked.parentNode.id));
+      }
+    });
+  },
 };
+
 const handlers = {
-  addTodo() {
+  addTodo: () => {
     const addTodoTextInput = document.getElementById('add-todo-text-input');
     todoList.addTodo(addTodoTextInput.value);
     addTodoTextInput.value = '';
     view.displayTodos();
   },
-  changeTodo() {
+  changeTodo: () => {
     const changeTodoIndexInput = document.getElementById('change-todo-index-input');
     const changeTodoTextInput = document.getElementById('change-todo-text-input');
     todoList.changeTodo(changeTodoIndexInput.valueAsNumber, changeTodoTextInput.value);
@@ -78,25 +89,20 @@ const handlers = {
     changeTodoTextInput.value = '';
     view.displayTodos();
   },
-  deleteTodo() {
-    const deleteTodoIndexInput = document.getElementById('delete-todo-index-input');
-    todoList.deleteTodo(deleteTodoIndexInput.valueAsNumber);
-    deleteTodoIndexInput.value = '';
+  deleteTodo: index => {
+    todoList.deleteTodo(index);
     view.displayTodos();
   },
-  toggleCompleted() {
+  toggleCompleted: () => {
     const toggleCompletedIndexInput = document.getElementById('toggle-completed-index-input');
     todoList.toggleCompleted(toggleCompletedIndexInput.valueAsNumber);
     toggleCompletedIndexInput.value = '';
     view.displayTodos();
   },
-  toggleAll() {
+  toggleAll: () => {
     todoList.toggleAll();
     view.displayTodos();
   },
 };
 
-const debugFunction = fn => {
-  debugger;
-  fn();
-};
+view.setupEventListeners();
