@@ -52,8 +52,15 @@ const view = {
       }
 
       todoLi.textContent = todoTextWithCompletion;
+      todoLi.appendChild(this.createDeleteBtn());
       todosUl.appendChild(todoLi);
     }
+  },
+  createDeleteBtn: () => {
+    const deleteBtn = document.createElement('button');
+    deleteBtn.textContent = 'Delete';
+    deleteBtn.className = 'delete-btn';
+    return deleteBtn;
   },
 };
 const handlers = {
@@ -87,4 +94,9 @@ const handlers = {
     todoList.toggleAll();
     view.displayTodos();
   },
+};
+
+const debugFunction = fn => {
+  debugger;
+  fn();
 };
