@@ -19,20 +19,20 @@ const todoList = {
   toggleAll() {
     const totalTodos = this.todos.length;
     let completedTodos = 0;
-    for (let i = 0; i < totalTodos; i++) {
-      if (this.todos[i].completed === true) {
+
+    this.todos.forEach(todo => {
+      if (todo.completed === true) {
         completedTodos++;
       }
-    }
-    if (completedTodos === totalTodos) {
-      for (let i = 0; i < totalTodos; i++) {
-        this.todos[i].completed = false;
+    });
+
+    this.todos.forEach(todo => {
+      if (completedTodos === totalTodos) {
+        todo.completed = false;
+      } else {
+        todo.completed = true;
       }
-    } else {
-      for (let i = 0; i < totalTodos; i++) {
-        this.todos[i].completed = true;
-      }
-    }
+    });
   },
 };
 const view = {
@@ -40,9 +40,8 @@ const view = {
     const todosUl = document.querySelector('ul');
     todosUl.innerHTML = '';
 
-    for (let i = 0; i < todoList.todos.length; i++) {
+    todoList.todos.forEach((todo, index) => {
       const todoLi = document.createElement('li');
-      const todo = todoList.todos[i];
       let todoTextWithCompletion = '';
 
       if (todo.completed === true) {
@@ -50,11 +49,11 @@ const view = {
       } else {
         todoTextWithCompletion = `[ ] ${todo.todoText}`;
       }
-      todoLi.id = i;
+      todoLi.id = index;
       todoLi.textContent = todoTextWithCompletion;
       todoLi.appendChild(this.createDeleteBtn());
       todosUl.appendChild(todoLi);
-    }
+    }, this);
   },
   createDeleteBtn: () => {
     const deleteBtn = document.createElement('button');
